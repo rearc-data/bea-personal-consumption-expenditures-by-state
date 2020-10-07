@@ -1,7 +1,4 @@
 COMPONENT createDataset task
-
-# Describes a database resource used by the component defined within this file.
-# RESOURCE metadataDB dynamodb -s hashKeyName=name -s hashKeyType=S -s rangeKeyName=type -s rangeKeyType=S
   
 FROM python:3.8
 WORKDIR createDataset
@@ -15,37 +12,8 @@ RUN wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O /
     chmod +x /usr/local/bin/jq
 RUN pip install -r requirements.txt
 
-# set environment variables for runtime
-# ENV DYNAMO_TABLE $.resources.mobilityDB.tableName
-# ENV DYNAMO_ENDPOINT $.resources.mobilityDB.endpoint
-
 RUN chmod a+x ./bin/*
 CMD [ "/bin/bash", "./bin/run-script.sh" ]
 
 LIFECYCLE beforeStartingServices
-
-COMPONENT updateDataset task
-
-# Describes a database resource used by the component defined within this file.
-# RESOURCE metadataDB dynamodb -s hashKeyName=name -s hashKeyType=S -s rangeKeyName=type -s rangeKeyType=S
-  
-FROM python:3.8
-WORKDIR updateDataset
-
-COPY ./ .
-
-# install dependencies
-RUN pip install awscli --upgrade
-RUN wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O /usr/local/bin/jq && \
-    echo 'af986793a515d500ab2d35f8d2aecd656e764504b789b66d7e1a0b727a124c44  /usr/local/bin/jq' | sha256sum -c && \
-    chmod +x /usr/local/bin/jq
-RUN pip install -r requirements.txt
-
-# set environment variables for runtime
-# ENV DYNAMO_TABLE $.resources.mobilityDB.tableName
-# ENV DYNAMO_ENDPOINT $.resources.mobilityDB.endpoint
-
-RUN chmod a+x ./bin/*
-CMD [ "/bin/bash", "./bin/run-script.sh" ]
-
 CRON 0 * * * *
