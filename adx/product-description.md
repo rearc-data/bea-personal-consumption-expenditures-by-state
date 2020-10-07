@@ -1,10 +1,6 @@
-<a href="https://www.rearc.io/data/">
-    <img src="./rearc_logo_rgb.png" alt="Rearc Logo" title="Rearc Logo" height="52" />
-</a>
-
 ### Personal Consumption Expenditures (PCE) by State (Table SAEXP) | The U.S. Bureau of Economic Analysis (BEA)
 
-You can subscribe to the AWS Data Exchange product utilizing the automation featured in this repository by visiting [https://aws.amazon.com/marketplace/pp/prodview-](https://aws.amazon.com/marketplace/pp/prodview-).
+The source code outlining how this product gathers, transforms, revises and publishes its datasets is available at [https://github.com/rearc-data/bea-personal-consumption-expenditures-by-state](https://github.com/rearc-data/bea-personal-consumption-expenditures-by-state).
 
 ## Main Overview
 
