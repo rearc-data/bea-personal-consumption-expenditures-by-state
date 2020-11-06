@@ -70,7 +70,7 @@ python src/create_dataset_revision.py \
 echo "check dataset revision status"
 DATASET_REVISION_STATUS=$(aws dataexchange list-data-set-revisions --data-set-id "$DATASET_ID" --region "$REGION" --query "sort_by(Revisions, &CreatedAt)[-1].Finalized"$PROFILE)
 
-if [[ $DATASET_REVISION_STATUS == "true" ]]
+if [[ -z "${DATASET_ARN}" && $DATASET_REVISION_STATUS == "true" ]]
 then
   echo "Dataset revision completed successfully\n"
   echo "Manually create the ADX product from Amazon Data Exchange Console.\n"
